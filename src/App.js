@@ -1,6 +1,7 @@
 import { useState } from "react";
 import './App.css';
 import Header from './components/headers';
+import SideBar from './components/sideBar';
 
 function App() {
   const [user, setUser] = useState({
@@ -15,9 +16,8 @@ function App() {
   return(    
     <div className="App">
       {/* if logged in */}
-        {/* header */}
         <Header userPhoto={user.photoUrl}/>
-        {/* sidebar */}
+        <SideBar />
 
       {/* if not logged in */}
         {/* login */}
