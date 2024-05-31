@@ -6,6 +6,7 @@ import "../../styles/NewFile.css";
 
 import { firebaseApp, storageRef, db } from "../../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@mui/material/Modal';
@@ -54,15 +55,14 @@ const NewFile = () => {
 		setUploading(true);
 		
 		uploadBytes(ref(storageRef, `files/${file.name}`), file).then(snapshot => {
-			console.log(snapshot);
 			
-			getDownloadURL(snapshot.ref).then(url => {
-				db.collection('myfiles').add({
-					timestamp: firebaseApp.firestore.FieldValue.serverTimestamp(),
+			getDownloadURL(snapshot.ref).then(async (url) => {
+				const fileRef = await addDoc(collection(db, 'myfiles'), {
+					timestamp: serverTimestamp(),
 					caption: file.name,
 					fileUrl: url,
-					size: snapshot._delegate.bytesTransferred,
-				})
+					size: snapshot.metadata.size,
+				});
 				setUploading(false);
 				setOpen(false);
 				setFile(null);
