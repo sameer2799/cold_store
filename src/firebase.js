@@ -5,12 +5,12 @@ import { ref, getStorage } from 'firebase/storage';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDeP2KmREJkIsyOMCPLH7y-zYp_yoLiJoM",
-  authDomain: "file-storage-c3bbf.firebaseapp.com",
-  projectId: "file-storage-c3bbf",
-  storageBucket: "file-storage-c3bbf.appspot.com",
-  messagingSenderId: "104583679805",
-  appId: "1:104583679805:web:f6f85209e97b82c2ec7f54"
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
